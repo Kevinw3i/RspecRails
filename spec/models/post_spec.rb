@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
     columns = Post.column_names
     # column_name 取得 ['id', 'title', 'content']
     expect(columns).to include('id')
-    expect(columns).not_to include('idst')
+    expect(columns).not_to include('user_ids')
     expect(columns).to include('title')
     expect(columns).to include('content')
   end
