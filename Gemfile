@@ -35,7 +35,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
   gem 'rails-controller-testing'
 end
-
+gem 'coveralls', require: false
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
