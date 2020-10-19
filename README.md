@@ -1,1 +1,2 @@
  [![Build Status](https://travis-ci.org/Kevinw3i/RspecRails.svg?branch=master)](https://travis-ci.org/Kevinw3i/RspecRails)
+ [![Coverage Status](https://coveralls.io/repos/github/Kevinw3i/RspecRails/badge.svg?branch=master)](https://coveralls.io/github/Kevinw3i/RspecRails?branch=master)
