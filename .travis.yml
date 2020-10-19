@@ -3,6 +3,8 @@ rvm:
   - 2.6.5
 
 cache:
+  # - bundler
+  # - /home/travis/.rvm/
   bundler: true
   yarn: true
   directories:
