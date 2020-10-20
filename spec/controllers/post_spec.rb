@@ -51,11 +51,11 @@ RSpec.describe PostsController, type: :controller do
             expect(Post.find(@post2[:id])[:title]).to eq "title_3"
         end
 
-        xit "redirect on success" do
-            post :update, params: { post: @post_params }
+        it "redirect on success" do
+            post :update, params: { post: @post_params, id: @post2[:id] }
             expect( response.status ).not_to be 200
             expect( response.status ).to be 302
-            expect( response ).to redirect_to post_path Post.last
+            expect( response ).to redirect_to post_path Post.find(@post2[:id])
         end
     end
 end
