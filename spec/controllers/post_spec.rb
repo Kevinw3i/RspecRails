@@ -39,6 +39,17 @@ RSpec.describe PostsController, type: :controller do
             expect( response.status ).to be 302
             expect( response ).to redirect_to post_path Post.last
         end
+
+        it "render :new on fails" do 
+            # allow_any_instance_of(Post)
+            # Post  =>  Post.new
+            # 他是 Post 的 instance
+            # @post.save
+            allow_any_instance_of(Post).to receive(:save).and_return(false)
+            post :create, params: { post: @post_params }
+            expect( response.status ).not_to be 302
+            expect( response ).to render_template :new
+        end
     end
 
     describe "#update" do
