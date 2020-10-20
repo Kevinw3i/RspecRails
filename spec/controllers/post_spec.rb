@@ -26,12 +26,11 @@ RSpec.describe PostsController, type: :controller do
 
     describe "#create" do
         before(:all) do
-            @post = { title: "title", content: "content" }
+            @post_params = {title: "title", content: "content"}
         end
 
-        it " create record " do
-            expect( post :create, params: @post ).to change( Post.all.size )
-                .by(1)
+        it "creates record" do 
+            expect{ post :create, params:{ post: @post_params }}.to change{Post.all.size}.by(1)
         end
 
     end
