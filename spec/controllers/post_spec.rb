@@ -68,5 +68,23 @@ RSpec.describe PostsController, type: :controller do
             expect( response.status ).to be 302
             expect( response ).to redirect_to post_path Post.find(@post2[:id])
         end
+
+        it "render :edit on fails" do 
+            # allow_any_instance_of(Post)
+            # Post  =>  Post.new
+            # 他是 Post 的 instance
+            # @post.save
+            allow_any_instance_of(Post).to receive(:update).and_return(false)
+            post :update, params: { post: @post_params, id: @post2[:id] }
+            expect( response.status ).not_to be 302
+            expect( response ).to render_template :edit
+        end
+    end
+
+    describe "#destory" do
+        it "destory record" do
+            expect{ delete :destroy, params: { id: @post2[:id]} }
+                .to change{ Post.all.count }.by(-1)
+        end
     end
 end
