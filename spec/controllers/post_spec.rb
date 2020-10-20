@@ -39,6 +39,23 @@ RSpec.describe PostsController, type: :controller do
             expect( response.status ).to be 302
             expect( response ).to redirect_to post_path Post.last
         end
+    end
 
+    describe "#update" do
+        before(:all) do
+            @post_params = {title: "title_3", content: "content"}
+        end
+
+        it "change record" do 
+            post :update, params: { post: @post_params, id: @post2[:id]}
+            expect(Post.find(@post2[:id])[:title]).to eq "title_3"
+        end
+
+        xit "redirect on success" do
+            post :update, params: { post: @post_params }
+            expect( response.status ).not_to be 200
+            expect( response.status ).to be 302
+            expect( response ).to redirect_to post_path Post.last
+        end
     end
 end
