@@ -33,5 +33,12 @@ RSpec.describe PostsController, type: :controller do
             expect{ post :create, params:{ post: @post_params }}.to change{Post.all.size}.by(1)
         end
 
+        it "redirect on success" do
+            post :create, params: { post: @post_params }
+            expect( response.status ).not_to be 200
+            expect( response.status ).to be 302
+            expect( response ).to redirect_to post_path Post.last
+        end
+
     end
 end
