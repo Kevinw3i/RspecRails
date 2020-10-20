@@ -82,9 +82,19 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe "#destory" do
+        before(:each) do
+            @post3 = @post2 || Post.create( title: "t3", content: "content")
+        end
+
         it "destory record" do
-            expect{ delete :destroy, params: { id: @post2[:id]} }
+            expect{ delete :destroy, params: { id: @post3[:id]} }
                 .to change{ Post.all.count }.by(-1)
+        end
+
+        it "redirect_to index after destroy" do
+            delete :destroy, params: { id: @post3[:id]}
+            expect( response.status ).to be 302
+            expect( response ).to redirect_to(posts_url)
         end
     end
 end
